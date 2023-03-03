@@ -72,7 +72,7 @@ export class Controller {
 
   init(): void {
     this.logger.info(process.argv.join(' '));
-    this.logger.info(`Npkill started! v${this.getVersion()}`);
+    this.logger.info(`Nskill started! v${this.getVersion()}`);
     this.initUi();
     if (this.consoleService.isRunningBuild()) {
       this.uiHeader.programVersion = this.getVersion();
@@ -245,7 +245,7 @@ export class Controller {
           this.showUpdateMessage();
           this.logger.info('New version found!');
         } else {
-          this.logger.info('Npkill is update');
+          this.logger.info('Nskill is up to date');
         }
       })
       .catch((err) => {
@@ -426,7 +426,7 @@ export class Controller {
     this.uiService.clear();
     this.uiService.setCursorVisible(true);
     this.printExitMessage();
-    this.logger.info('Thank for using npkill. Bye!');
+    this.logger.info('Thank for using nskill. Bye!');
     const logPath = this.logger.getSuggestLogfilePath();
     this.logger.saveToFile(logPath);
     process.exit();

@@ -63,12 +63,37 @@ export const UI_POSITIONS: IUiPosition = {
 //   'e', // Show errors
 // ];
 
-export const BANNER = `-----                    __   .__.__  .__
--           ____ ______ |  | _|__|  | |  |
-------     /    \\\\____ \\|  |/ /  |  | |  |
-----      |   |  \\  |_> >    <|  |  |_|  |__
---        |___|  /   __/|__|_ \\__|____/____/
--------        \\/|__|        \\/
+const ASCII_PREFIX = `
+-----
+-
+------
+----
+--
+-------
+`
+  .split('\n')
+  .filter((line) => line.trim().length > 0)
+  .map((line, idx) => line.trim());
+const maxSize = ASCII_PREFIX.reduce(
+  (acc, line) => Math.max(acc, line.length),
+  0,
+);
+const ASCII_ART_NAME = `
+               __   .__.__  .__   
+  ____   _____|  | _|__|  | |  |  
+ /    \\ /  ___/  |/ /  |  | |  |  
+|   |  \\\\___ \\|    <|  |  |_|  |__
+|___|  /____  >__|_ \\__|____/____/
+     \\/     \\/     \\/             
 `;
+
+export const BANNER = ASCII_ART_NAME.split('\n')
+  .filter((line) => line.trim().length > 0)
+  .map((line, idx) => {
+    const prefix = ASCII_PREFIX[idx] || '-';
+    const padding = ' '.repeat(maxSize - prefix.length);
+    return `${prefix}${padding}${line}`.trim();
+  })
+  .join('\n');
 
 export const STREAM_ENCODING = 'utf8';
