@@ -34,19 +34,29 @@ export abstract class UnixFilesService extends FileService {
   }
 
   protected prepareFindArgs(params: IListDirParams): string[] {
-    const { path, target, exclude } = params;
+    throw new Error('Method not implemented.');
+    const { path, targets, exclude } = params;
+    // TODO: change this
+    const currentTarget = targets[0];
+    const target = currentTarget;
     let args: string[] = [path];
 
     if (exclude) {
       args = [...args, this.prepareExcludeArgs(exclude)].flat();
     }
+    let additionalArgs = [];
+    if (currentTarget.siblingFile) {
+      additionalArgs = ['-execdir', 'test -e "nativescript.config.ts" \\;'];
+    }
+    additionalArgs = ['-execdir', 'test -e "nativescript.config.ts" \\;'];
 
-    args = [...args, '-name', target, '-prune'];
+    args = [...args, '-name', target, ...additionalArgs, '-prune'];
 
     return args;
   }
 
   protected prepareExcludeArgs(exclude: string[]): string[] {
+    throw new Error('Method not implemented.');
     const excludeDirs = exclude.map((dir: string) => [
       '-not',
       '(',

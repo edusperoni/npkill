@@ -1,5 +1,8 @@
 export interface IListDirParams {
   path: string;
-  target: string;
   exclude?: string[];
+  targets: {
+    target: string;
+    siblingFile?: string;
+  }[];
 }

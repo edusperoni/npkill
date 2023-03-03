@@ -10,7 +10,7 @@ export interface IFileService {
   convertBytesToKB(bytes: number): number;
   convertGBToMB(gb: number): number;
   getFileContent(path: string): string;
-  isSafeToDelete(path: string, targetFolder: string): boolean;
+  isSafeToDelete(path: string, params: IListDirParams): boolean;
   isDangerous(path: string): boolean;
   getRecentModificationInDir(path: string): Promise<number>;
   getFileStatsInDir(dirname: string): Promise<IFileStat[]>;

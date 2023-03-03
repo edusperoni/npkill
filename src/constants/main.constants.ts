@@ -10,7 +10,7 @@ export const OVERFLOW_CUT_FROM = 11;
 export const DEFAULT_CONFIG: IConfig = {
   backgroundColor: 'bgBlue',
   warningColor: 'brightYellow',
-  checkUpdates: true,
+  checkUpdates: false,
   deleteAll: false,
   exclude: [],
   excludeHiddenDirectories: false,
@@ -18,7 +18,7 @@ export const DEFAULT_CONFIG: IConfig = {
   maxSimultaneousSearch: 6,
   showErrors: true,
   sortBy: '',
-  targetFolder: 'node_modules',
+  // targetFolder: 'node_modules',
 };
 
 export const MARGINS = {

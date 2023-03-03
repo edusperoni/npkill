@@ -13,6 +13,7 @@ import {
 
 import { StreamService } from '../src/services/stream.service.js';
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'fs';
+import { IListDirParams } from '../src/interfaces/list-dir-params.interface.js';
 
 jest.mock('../src/dirname.js', () => {
   return { __esModule: true };
@@ -45,7 +46,14 @@ describe('File Service', () => {
   });
 
   describe('#isSafeToDelete', () => {
-    const target = 'node_modules';
+    const target: IListDirParams = {
+      path: '/one/route',
+      targets: [
+        {
+          target: 'node_modules',
+        },
+      ],
+    };
 
     it('should get false if not is safe to delete ', () => {
       expect(fileService.isSafeToDelete('/one/route', target)).toBeFalsy();

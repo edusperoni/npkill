@@ -1,5 +1,5 @@
 {
-  "name": "npkill",
+  "name": "@edusperoni/nskill",
   "version": "0.11.0-0",
   "description": "List any node_modules directories in your system, as well as the space they take up. You can then select which ones you want to erase to free up space.",
   "exports": "./lib/index.js",
@@ -11,12 +11,12 @@
     "access": "public"
   },
   "bin": {
-    "npkill": "lib/index.js"
+    "nskill": "lib/index.js"
   },
-  "author": "Nya Garcia & Juan Torres",
+  "author": "Eduardo Speroni",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zaldih/npkill"
+    "url": "https://github.com/edusperoni/npkill"
   },
   "license": "MIT",
   "keywords": [

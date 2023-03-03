@@ -5,8 +5,9 @@ import {
 } from '../../interfaces/index.js';
 
 import { Observable } from 'rxjs';
-import { readFileSync, statSync } from 'fs';
+import { readFileSync, statSync, existsSync } from 'fs';
 import { readdir, stat } from 'fs/promises';
+import { dirname, join } from 'path';
 
 export abstract class FileService implements IFileService {
   abstract getFolderSize(path: string): Observable<number>;
@@ -33,8 +34,22 @@ export abstract class FileService implements IFileService {
     return readFileSync(path, encoding);
   }
 
-  isSafeToDelete(path: string, targetFolder: string): boolean {
-    return path.includes(targetFolder);
+  isSafeToDelete(path: string, listParams: IListDirParams): boolean {
+    if (
+      (listParams.exclude || []).some((exclude) => path.startsWith(exclude)) ||
+      !path.startsWith(listParams.path)
+    ) {
+      return false;
+    }
+    return listParams.targets.some(({ target, siblingFile }) => {
+      if (!path.endsWith(target) && !path.endsWith(`${target}/`)) {
+        return false;
+      }
+      if (siblingFile) {
+        return existsSync(`${join(dirname(path), siblingFile)}`);
+      }
+      return true;
+    });
   }
 
   /** We consider a directory to be dangerous if it is hidden.

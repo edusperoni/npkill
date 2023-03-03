@@ -1,10 +1,19 @@
 'use strict';
 
-import { Dirent, opendir } from 'fs';
+import { Dirent, opendir, existsSync } from 'fs';
 
 import EventEmitter from 'events';
 import { memoryUsage } from 'process';
 import { parentPort } from 'worker_threads';
+import { IListDirParams } from '../../interfaces';
+import { dirname, join } from 'path';
+
+function hasSibling(path: string, sibling?: string) {
+  if (!sibling) {
+    return true;
+  }
+  return existsSync(join(dirname(path), sibling));
+}
 
 enum ETaskOperation {
   'explore',
@@ -18,7 +27,7 @@ interface Task {
 (() => {
   parentPort.on('message', (data) => {
     if (data?.type === 'start-explore') {
-      startExplore(data.value.path);
+      startExplore(data.value);
     }
 
     if (data?.type === 'start-getSize') {
@@ -30,14 +39,20 @@ interface Task {
     }
   });
 
-  function startExplore(path: string) {
+  function startExplore({ path, targets }: IListDirParams) {
     const fileWalker = new FileWalker();
     fileWalker.enqueueTask(path);
 
     fileWalker.onNewResult(({ path, dirent }) => {
       if (dirent.isDirectory()) {
         const subpath = (path === '/' ? '' : path) + '/' + dirent.name;
-        if (dirent.name === 'node_modules') {
+
+        if (
+          targets.some(
+            ({ target, siblingFile }) =>
+              dirent.name === target && hasSibling(subpath, siblingFile),
+          )
+        ) {
           parentPort.postMessage({ type: 'scan-result', value: subpath });
         } else {
           fileWalker.enqueueTask(subpath);

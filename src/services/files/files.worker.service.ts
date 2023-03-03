@@ -11,7 +11,7 @@ export class FileWorkerService {
   startScan(stream$: BehaviorSubject<string>, params: IListDirParams) {
     this.scanWorker.postMessage({
       type: 'start-explore',
-      value: { path: params.path },
+      value: params,
     });
 
     this.scanWorker.on('message', (data) => {

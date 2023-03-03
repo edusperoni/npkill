@@ -152,8 +152,8 @@ export class Controller {
     if (options['hide-errors']) this.config.showErrors = false;
     if (options['gb']) this.config.folderSizeInGB = true;
     if (options['no-check-updates']) this.config.checkUpdates = false;
-    if (options['target-folder'])
-      this.config.targetFolder = options['target-folder'];
+    // if (options['target-folder'])
+    //   this.config.targetFolder = options['target-folder'];
     if (options['bg-color']) this.setColor(options['bg-color']);
     if (options['exclude-hidden-directories'])
       this.config.excludeHiddenDirectories = true;
@@ -303,8 +303,6 @@ export class Controller {
 
   private scan(): void {
     const params: IListDirParams = this.prepareListDirParams();
-    const isChunkCompleted = (chunk: string) =>
-      chunk.endsWith(this.config.targetFolder + '\n');
 
     const isExcludedDangerousDirectory = (path: string): boolean =>
       this.config.excludeHiddenDirectories &&
@@ -353,10 +351,17 @@ export class Controller {
   }
 
   private prepareListDirParams(): IListDirParams {
-    const target = this.config.targetFolder;
-    const params = {
+    const params: IListDirParams = {
       path: this.folderRoot,
-      target,
+      targets: [
+        {
+          target: 'node_modules',
+        },
+        {
+          target: 'platforms',
+          siblingFile: 'nativescript.config.ts',
+        },
+      ],
     };
 
     if (this.config.exclude.length > 0) {
@@ -433,9 +438,11 @@ export class Controller {
   }
 
   private deleteFolder(folder: IFolder): void {
+    const options = this.prepareListDirParams();
+
     const isSafeToDelete = this.fileService.isSafeToDelete(
       folder.path,
-      this.config.targetFolder,
+      options,
     );
 
     if (!isSafeToDelete) {

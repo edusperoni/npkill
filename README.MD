@@ -18,25 +18,30 @@
 
 This tool allows you to list any _node_modules_ directories in your system, as well as the space they take up. You can then select which ones you want to erase to free up space. Yay!
 
+**This fork also adds the ability to list all _platforms_ folder created by NativeScript!**
+
 ## Table of Contents
 
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
+- [:heavy_check_mark: Features](#heavy_check_mark-features)
+- [:cloud: Installation](#cloud-installation)
+- [:clipboard: Usage](#clipboard-usage)
   - [Options](#options)
   - [Examples](#examples)
-- [Set Up Locally](#setup-locally)
-- [Roadmap](#roadmap)
-- [Known bugs](#known-bugs)
-- [Contributing](#contributing)
-- [Buy us a coffee](#donations)
-- [License](#license)
+- [:pager: Set Up Locally](#pager-set-up-locally)
+- [:crystal_ball: Roadmap](#crystal_ball-roadmap)
+- [:bug: Known bugs :bug:](#bug-known-bugs-bug)
+- [:revolving_hearts: Contributing](#revolving_hearts-contributing)
+- [:coffee: Buy us a coffee](#coffee-buy-us-a-coffee)
+  - [Thanks!!](#thanks)
+  - [A huge thank you to our backers :heart:](#a-huge-thank-you-to-our-backers-heart)
+    - [Crypto alternative](#crypto-alternative)
+- [:scroll: License](#scroll-license)
 
 <a name="features"></a>
 
 # :heavy_check_mark: Features
 
-- **Clear space:** Get rid of old and dusty *node_modules* cluttering up your machine.
+- **Clear space:** Get rid of old and dusty _node_modules_ cluttering up your machine.
 
 - **Last Workspace Usage**: Check when was the last time you modified a file in the workspace (indicated in the **last_mod** column).
 
@@ -89,17 +94,17 @@ To exit, <kbd>Q</kbd> or <kbd>Ctrl</kbd> + <kbd>c</kbd> if you're brave.
 ## Options
 
 | ARGUMENT                         | DESCRIPTION                                                                                                                                    |
-| ----------------------           | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | -c, --bg-color                   | Change row highlight color. _(Available: **blue**, cyan, magenta, white, red and yellow)_                                                      |
 | -d, --directory                  | Set the directory from which to begin searching. By default, starting-point is .                                                               |
 | -D, --delete-all                 | CURRENTLY DISABLED. Automatically delete all node_modules folders that are found                                                               |
-| -e, --hide-errors                | Hide errors if any                                                                                               |
+| -e, --hide-errors                | Hide errors if any                                                                                                                             |
 | -E, --exclude                    | Exclude directories from search (directory list must be inside double quotes "", each directory separated by ',' ) Example: "ignore1, ignore2" |
 | -f, --full                       | Start searching from the home of the user (example: "/home/user" in linux)                                                                     |
 | -gb                              | Show folders in Gigabytes instead of Megabytes.                                                                                                |
 | -h, --help, ?                    | Show this help page and exit                                                                                                                   |
 | -nu, --no-check-update           | Don't check for updates on startup                                                                                                             |
-| -s, --sort                       | Sort results by: `size`, `path` or `last-mod`                                                                                                     |
+| -s, --sort                       | Sort results by: `size`, `path` or `last-mod`                                                                                                  |
 | -t, --target                     | Specify the name of the directories you want to search (by default, is node_modules)                                                           |
 | -x, --exclude-hidden-directories | Exclude hidden directories ("dot" directories) from search.                                                                                    |
 | -v, --version                    | Show npkill version                                                                                                                            |

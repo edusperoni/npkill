@@ -93,7 +93,7 @@ export class ResultsUi extends Ui implements InteractiveUi {
 
   private noResults() {
     const message = `No ${colors[DEFAULT_CONFIG.warningColor](
-      this.config.targetFolder,
+      'node_modules/platforms',
     )} found!`;
     this.printAt(message, {
       x: Math.floor(this.stdout.columns / 2 - message.length / 2),

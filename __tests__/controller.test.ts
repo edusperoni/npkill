@@ -103,7 +103,7 @@ describe('Controller test', () => {
     expect(showHelpSpy).toHaveBeenCalledTimes(0);
     expect(setupEventsListenerSpy).toHaveBeenCalledTimes(1);
     expect(scanSpy).toHaveBeenCalledTimes(1);
-    expect(checkVersionSpy).toHaveBeenCalledTimes(1);
+    expect(checkVersionSpy).toHaveBeenCalledTimes(0);
   });
 
   describe('#getArguments', () => {
