@@ -59,13 +59,13 @@ You don't really need to install it to use it!
 Simply use the following command:
 
 ```bash
-$ npx npkill
+$ npx @edusperoni/nskill
 ```
 
 Or if for some reason you really want to install it:
 
 ```bash
-$ npm i -g npkill
+$ npm i -g @edusperoni/nskill
 # Unix users may need to run the command with sudo. Go carefully
 ```
 
@@ -76,11 +76,11 @@ $ npm i -g npkill
 # :clipboard: Usage
 
 ```bash
-$ npx npkill
-# or just npkill if installed globally
+$ npx @edusperoni/nskill
+# or just nskill if installed globally
 ```
 
-By default, npkill will scan for node_modules starting at the path where `npkill` command is executed.
+By default, nskill will scan for node_modules starting at the path where `nskill` command is executed.
 
 Move between the listed folders with <kbd>↓</kbd> <kbd>↑</kbd>, and use <kbd>Space</kbd> to delete the selected folder.
 You can also use <kbd>j</kbd> and <kbd>k</kbd> to move between the results
@@ -118,42 +118,42 @@ To exit, <kbd>Q</kbd> or <kbd>Ctrl</kbd> + <kbd>c</kbd> if you're brave.
 - Search **node_modules** directories in your _projects_ directory:
 
 ```bash
-npkill -d ~/projects
+nskill -d ~/projects
 
 # other alternative:
 cd ~/projects
-npkill
+nskill
 ```
 
 - List directories named "dist" and show errors if any occur:
 
 ```bash
-npkill --target dist -e
+nskill --target dist -e
 ```
 
 - Displays the magenta color cursor... because I like magenta!
 
 ```bash
-npkill --color magenta
+nskill --color magenta
 ```
 
 - List **vendor** directories in your _projects_ directory, sort by size, and show size in gb:
 
 ```bash
-npkill -d '~/more projects' -gb --sort size --target vendor
+nskill -d '~/more projects' -gb --sort size --target vendor
 ```
 
 - List **node_modules** in your _projects_ directory, excluding the ones in _progress_ and _ignore-this_ directories:
 
 ```bash
-npkill -d 'projects' --exclude "progress, ignore-this"
+nskill -d 'projects' --exclude "progress, ignore-this"
 ```
 
 - Automatically delete all node_modules that have sneaked into your backups:
 
 ```bash
 # Disabled for security reasons (you can use it in version 0.2.4 at your risk)
-npkill -d ~/backups/ --delete-all
+nskill -d ~/backups/ --delete-all
 ```
 
 <a name="setup-locally"></a>
@@ -162,7 +162,7 @@ npkill -d ~/backups/ --delete-all
 
 ```bash
 # -- First, clone the repository
-git clone https://github.com/voidcosmos/npkill.git
+git clone https://github.com/edusperoni/npkill.git
 
 # -- Navigate to the dir
 cd npkill
