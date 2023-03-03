@@ -6,7 +6,7 @@ import {
 
 import { Observable } from 'rxjs';
 import { readFileSync, statSync, existsSync } from 'fs';
-import { readdir, stat } from 'fs/promises';
+import { lstat, readdir } from 'fs/promises';
 import { dirname, join } from 'path';
 
 export abstract class FileService implements IFileService {
@@ -85,7 +85,7 @@ export abstract class FileService implements IFileService {
         ];
       } else {
         const path = `${dirname}/${item.name}`;
-        const fileStat = await stat(path);
+        const fileStat = await lstat(path);
 
         files.push({ path, modificationTime: fileStat.mtimeMs / 1000 });
       }
